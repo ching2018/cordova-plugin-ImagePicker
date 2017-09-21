@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.holdskill.imagepicker.ImagePicker;
-import com.holdskill.imagepicker.PackageNameR;
+import com.holdskill.imagepicker.FakeR;
 import com.holdskill.imagepicker.util.Utils;
 import com.holdskill.imagepicker.bean.ImageItem;
 import com.holdskill.imagepicker.ui.ImageBaseActivity;
@@ -42,7 +42,7 @@ public class ImageGridAdapter extends BaseAdapter {
     private boolean isShowCamera;         //是否显示拍照按钮
     private int mImageSize;               //每个条目的大小
     private OnImageItemClickListener listener;   //图片被点击的监听
-    private PackageNameR packagenameR;
+    private FakeR fakeR;
 
     public ImageGridAdapter(Activity activity, ArrayList<ImageItem> images) {
         this.mActivity = activity;
@@ -96,10 +96,10 @@ public class ImageGridAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        packagenameR = new PackageNameR(this);
+        fakeR = new FakeR(this);
         int itemViewType = getItemViewType(position);
         if (itemViewType == ITEM_TYPE_CAMERA) {
-            convertView = LayoutInflater.from(mActivity).inflate(packagenameR.getId("layout", "adapter_camera_item"), parent, false);
+            convertView = LayoutInflater.from(mActivity).inflate(fakeR.getId("layout", "adapter_camera_item"), parent, false);
             convertView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, mImageSize)); //让图片是个正方形
             convertView.setTag(null);
             convertView.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +115,7 @@ public class ImageGridAdapter extends BaseAdapter {
         } else {
             final ViewHolder holder;
             if (convertView == null) {
-                convertView = LayoutInflater.from(mActivity).inflate(packagenameR.getId("layout", "adapter_image_list_item"), parent, false);
+                convertView = LayoutInflater.from(mActivity).inflate(fakeR.getId("layout", "adapter_image_list_item"), parent, false);
                 convertView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, mImageSize)); //让图片是个正方形
                 holder = new ViewHolder(convertView);
                 convertView.setTag(holder);
@@ -135,7 +135,7 @@ public class ImageGridAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     int selectLimit = imagePicker.getSelectLimit();
                     if (holder.cbCheck.isChecked() && mSelectedImages.size() >= selectLimit) {
-                        Toast.makeText(mActivity.getApplicationContext(), mActivity.getString(packagenameR.getId("string", "select_limit"), selectLimit), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mActivity.getApplicationContext(), mActivity.getString(fakeR.getId("string", "select_limit"), selectLimit), Toast.LENGTH_SHORT).show();
                         holder.cbCheck.setChecked(false);
                         holder.mask.setVisibility(View.GONE);
                     } else {
@@ -170,11 +170,11 @@ public class ImageGridAdapter extends BaseAdapter {
         public SuperCheckBox cbCheck;
 
         public ViewHolder(View view) {
-            packagenameR = new PackageNameR(this);
+            fakeR = new FakeR(this);
             rootView = view;
-            ivThumb = (ImageView) view.findViewById(packagenameR.getId("id", "iv_thumb"));
-            mask = view.findViewById(packagenameR.getId("id", "mask"));
-            cbCheck = (SuperCheckBox) view.findViewById(packagenameR.getId("id", "cb_check"));
+            ivThumb = (ImageView) view.findViewById(fakeR.getId("id", "iv_thumb"));
+            mask = view.findViewById(fakeR.getId("id", "mask"));
+            cbCheck = (SuperCheckBox) view.findViewById(fakeR.getId("id", "cb_check"));
         }
     }
 

@@ -11,7 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.holdskill.imagepicker.ImagePicker;
-import com.holdskill.imagepicker.PackageNameR;
+import com.holdskill.imagepicker.FakeR;
 import com.holdskill.imagepicker.bean.ImageItem;
 import com.holdskill.imagepicker.view.SuperCheckBox;
 
@@ -33,26 +33,26 @@ public class ImagePreviewActivity extends ImagePreviewBaseActivity implements Im
     private SuperCheckBox mCbOrigin;               //原图
     private Button mBtnOk;                         //确认图片的选择
     private View bottomBar;
-    private PackageNameR packagenameR;
+    private FakeR fakeR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        packagenameR = new PackageNameR(this);
+        fakeR = new FakeR(this);
         super.onCreate(savedInstanceState);
 
         isOrigin = getIntent().getBooleanExtra(ImagePreviewActivity.ISORIGIN, false);
         imagePicker.addOnImageSelectedListener(this);
 
-        mBtnOk = (Button) topBar.findViewById(packagenameR.getId("id", "btn_ok"));
+        mBtnOk = (Button) topBar.findViewById(fakeR.getId("id", "btn_ok"));
         mBtnOk.setVisibility(View.VISIBLE);
         mBtnOk.setOnClickListener(this);
 
-        bottomBar = findViewById(packagenameR.getId("id", "bottom_bar"));
+        bottomBar = findViewById(fakeR.getId("id", "bottom_bar"));
         bottomBar.setVisibility(View.VISIBLE);
 
-        mCbCheck = (SuperCheckBox) findViewById(packagenameR.getId("id", "cb_check"));
-        mCbOrigin = (SuperCheckBox) findViewById(packagenameR.getId("id", "cb_origin"));
-        mCbOrigin.setText(getString(packagenameR.getId("string", "origin")));
+        mCbCheck = (SuperCheckBox) findViewById(fakeR.getId("id", "cb_check"));
+        mCbOrigin = (SuperCheckBox) findViewById(fakeR.getId("id", "cb_origin"));
+        mCbOrigin.setText(getString(fakeR.getId("string", "origin")));
         mCbOrigin.setOnCheckedChangeListener(this);
         mCbOrigin.setChecked(isOrigin);
 
@@ -60,7 +60,7 @@ public class ImagePreviewActivity extends ImagePreviewBaseActivity implements Im
         onImageSelected(0, null, false);
         ImageItem item = mImageItems.get(mCurrentPosition);
         boolean isSelected = imagePicker.isSelect(item);
-        mTitleCount.setText(getString(packagenameR.getId("string", "preview_image_count"), mCurrentPosition + 1, mImageItems.size()));
+        mTitleCount.setText(getString(fakeR.getId("string", "preview_image_count"), mCurrentPosition + 1, mImageItems.size()));
         mCbCheck.setChecked(isSelected);
         //滑动ViewPager的时候，根据外界的数据改变当前的选中状态和当前的图片的位置描述文本
         mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -70,7 +70,7 @@ public class ImagePreviewActivity extends ImagePreviewBaseActivity implements Im
                 ImageItem item = mImageItems.get(mCurrentPosition);
                 boolean isSelected = imagePicker.isSelect(item);
                 mCbCheck.setChecked(isSelected);
-                mTitleCount.setText(getString(packagenameR.getId("string", "preview_image_count"), mCurrentPosition + 1, mImageItems.size()));
+                mTitleCount.setText(getString(fakeR.getId("string", "preview_image_count"), mCurrentPosition + 1, mImageItems.size()));
             }
         });
         //当点击当前选中按钮的时候，需要根据当前的选中状态添加和移除图片
@@ -80,7 +80,7 @@ public class ImagePreviewActivity extends ImagePreviewBaseActivity implements Im
                 ImageItem imageItem = mImageItems.get(mCurrentPosition);
                 int selectLimit = imagePicker.getSelectLimit();
                 if (mCbCheck.isChecked() && selectedImages.size() >= selectLimit) {
-                    Toast.makeText(ImagePreviewActivity.this, ImagePreviewActivity.this.getString(packagenameR.getId("string", "select_limit"), selectLimit), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ImagePreviewActivity.this, ImagePreviewActivity.this.getString(fakeR.getId("string", "select_limit"), selectLimit), Toast.LENGTH_SHORT).show();
                     mCbCheck.setChecked(false);
                 } else {
                     imagePicker.addSelectedImageItem(mCurrentPosition, imageItem, mCbCheck.isChecked());
@@ -95,12 +95,12 @@ public class ImagePreviewActivity extends ImagePreviewBaseActivity implements Im
      */
     @Override
     public void onImageSelected(int position, ImageItem item, boolean isAdd) {
-        packagenameR = new PackageNameR(this);
+        fakeR = new FakeR(this);
         if (imagePicker.getSelectImageCount() > 0) {
-            mBtnOk.setText(getString(packagenameR.getId("string", "select_complete"), imagePicker.getSelectImageCount(), imagePicker.getSelectLimit()));
+            mBtnOk.setText(getString(fakeR.getId("string", "select_complete"), imagePicker.getSelectImageCount(), imagePicker.getSelectLimit()));
             mBtnOk.setEnabled(true);
         } else {
-            mBtnOk.setText(getString(packagenameR.getId("string", "complete")));
+            mBtnOk.setText(getString(fakeR.getId("string", "complete")));
             mBtnOk.setEnabled(false);
         }
 
@@ -109,20 +109,20 @@ public class ImagePreviewActivity extends ImagePreviewBaseActivity implements Im
             for (ImageItem imageItem : selectedImages)
                 size += imageItem.size;
             String fileSize = Formatter.formatFileSize(this, size);
-            mCbOrigin.setText(getString(packagenameR.getId("string", "origin_size"), fileSize));
+            mCbOrigin.setText(getString(fakeR.getId("string", "origin_size"), fileSize));
         }
     }
 
     @Override
     public void onClick(View v) {
-        packagenameR = new PackageNameR(this);
+        fakeR = new FakeR(this);
         int id = v.getId();
-        if (id == packagenameR.getId("id", "btn_ok")) {
+        if (id == fakeR.getId("id", "btn_ok")) {
             Intent intent = new Intent();
             intent.putExtra(ImagePicker.EXTRA_RESULT_ITEMS, imagePicker.getSelectedImages());
             setResult(ImagePicker.RESULT_CODE_ITEMS, intent);
             finish();
-        } else if (id == packagenameR.getId("id", "btn_back")) {
+        } else if (id == fakeR.getId("id", "btn_back")) {
             Intent intent = new Intent();
             intent.putExtra(ImagePreviewActivity.ISORIGIN, isOrigin);
             setResult(ImagePicker.RESULT_CODE_BACK, intent);
@@ -141,19 +141,19 @@ public class ImagePreviewActivity extends ImagePreviewBaseActivity implements Im
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        packagenameR = new PackageNameR(this);
+        fakeR = new FakeR(this);
         int id = buttonView.getId();
-        if (id == packagenameR.getId("id", "cb_origin")) {
+        if (id == fakeR.getId("id", "cb_origin")) {
             if (isChecked) {
                 long size = 0;
                 for (ImageItem item : selectedImages)
                     size += item.size;
                 String fileSize = Formatter.formatFileSize(this, size);
                 isOrigin = true;
-                mCbOrigin.setText(getString(packagenameR.getId("string", "origin_size"), fileSize));
+                mCbOrigin.setText(getString(fakeR.getId("string", "origin_size"), fileSize));
             } else {
                 isOrigin = false;
-                mCbOrigin.setText(getString(packagenameR.getId("string", "origin")));
+                mCbOrigin.setText(getString(fakeR.getId("string", "origin")));
             }
         }
     }
@@ -167,18 +167,18 @@ public class ImagePreviewActivity extends ImagePreviewBaseActivity implements Im
     /** 单击时，隐藏头和尾 */
     @Override
     public void onImageSingleTap() {
-        packagenameR = new PackageNameR(this);
+        fakeR = new FakeR(this);
         if (topBar.getVisibility() == View.VISIBLE) {
-            topBar.setAnimation(AnimationUtils.loadAnimation(this, packagenameR.getId("anim", "top_out")));
-            bottomBar.setAnimation(AnimationUtils.loadAnimation(this, packagenameR.getId("anim", "fade_out")));
+            topBar.setAnimation(AnimationUtils.loadAnimation(this, fakeR.getId("anim", "top_out")));
+            bottomBar.setAnimation(AnimationUtils.loadAnimation(this, fakeR.getId("anim", "fade_out")));
             topBar.setVisibility(View.GONE);
             bottomBar.setVisibility(View.GONE);
             tintManager.setStatusBarTintResource(R.color.transparent);//通知栏所需颜色
             //给最外层布局加上这个属性表示，Activity全屏显示，且状态栏被隐藏覆盖掉。
 //            if (Build.VERSION.SDK_INT >= 16) content.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         } else {
-            topBar.setAnimation(AnimationUtils.loadAnimation(this, packagenameR.getId("anim", "top_in")));
-            bottomBar.setAnimation(AnimationUtils.loadAnimation(this, packagenameR.getId("anim", "fade_in")));
+            topBar.setAnimation(AnimationUtils.loadAnimation(this, fakeR.getId("anim", "top_in")));
+            bottomBar.setAnimation(AnimationUtils.loadAnimation(this, fakeR.getId("anim", "fade_in")));
             topBar.setVisibility(View.VISIBLE);
             bottomBar.setVisibility(View.VISIBLE);
             tintManager.setStatusBarTintResource(R.color.status_bar);//通知栏所需颜色

@@ -20,7 +20,7 @@ import android.widget.GridView;
 import com.holdskill.imagepicker.DataHolder;
 import com.holdskill.imagepicker.ImageDataSource;
 import com.holdskill.imagepicker.ImagePicker;
-import com.holdskill.imagepicker.PackageNameR;
+import com.holdskill.imagepicker.FakeR;
 import com.holdskill.imagepicker.adapter.ImageFolderAdapter;
 import com.holdskill.imagepicker.adapter.ImageRecyclerAdapter;
 import com.holdskill.imagepicker.adapter.ImageRecyclerAdapter.OnImageItemClickListener;
@@ -68,7 +68,7 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
     private boolean directPhoto = false; // 默认不是直接调取相机
     private RecyclerView mRecyclerView;
     private ImageRecyclerAdapter mRecyclerAdapter;
-    private PackageNameR packagenameR;
+    private FakeR fakeR;
 
 
     @Override
@@ -85,9 +85,9 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        packagenameR = new PackageNameR(this);
+        fakeR = new FakeR(this);
         super.onCreate(savedInstanceState);
-        setContentView(packagenameR.getId("layout", "activity_image_grid"));
+        setContentView(fakeR.getId("layout", "activity_image_grid"));
 
         imagePicker = ImagePicker.getInstance();
         imagePicker.clear();
@@ -109,18 +109,18 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
         }
 
 
-        mRecyclerView = (RecyclerView) findViewById(packagenameR.getId("id", "recycler"));
+        mRecyclerView = (RecyclerView) findViewById(fakeR.getId("id", "recycler"));
 
 
-        findViewById(packagenameR.getId("id", "btn_back")).setOnClickListener(this);
-        mBtnOk = (Button) findViewById(packagenameR.getId("id", "btn_ok"));
+        findViewById(fakeR.getId("id", "btn_back")).setOnClickListener(this);
+        mBtnOk = (Button) findViewById(fakeR.getId("id", "btn_ok"));
         mBtnOk.setOnClickListener(this);
-        mBtnDir = (Button) findViewById(packagenameR.getId("id", "btn_dir"));
+        mBtnDir = (Button) findViewById(fakeR.getId("id", "btn_dir"));
         mBtnDir.setOnClickListener(this);
-        mBtnPre = (Button) findViewById(packagenameR.getId("id", "btn_preview"));
+        mBtnPre = (Button) findViewById(fakeR.getId("id", "btn_preview"));
         mBtnPre.setOnClickListener(this);
-        mGridView = (GridView) findViewById(packagenameR.getId("id", "gridview"));
-        mFooterBar = findViewById(packagenameR.getId("id", "footer_bar"));
+        mGridView = (GridView) findViewById(fakeR.getId("id", "gridview"));
+        mFooterBar = findViewById(fakeR.getId("id", "footer_bar"));
         if (imagePicker.isMultiMode()) {
             mBtnOk.setVisibility(View.VISIBLE);
             mBtnPre.setVisibility(View.VISIBLE);
@@ -172,14 +172,14 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
 
     @Override
     public void onClick(View v) {
-        packagenameR = new PackageNameR(this);
+        fakeR = new FakeR(this);
         int id = v.getId();
-        if (id == packagenameR.getId("id", "btn_ok")) {
+        if (id == fakeR.getId("id", "btn_ok")) {
             Intent intent = new Intent();
             intent.putExtra(ImagePicker.EXTRA_RESULT_ITEMS, imagePicker.getSelectedImages());
             setResult(ImagePicker.RESULT_CODE_ITEMS, intent);  //多选不允许裁剪裁剪，返回数据
             finish();
-        } else if (id == packagenameR.getId("id", "btn_dir")) {
+        } else if (id == fakeR.getId("id", "btn_dir")) {
             if (mImageFolders == null) {
                 Log.i("ImageGridActivity", "您的手机没有图片");
                 return;
@@ -196,14 +196,14 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
                 index = index == 0 ? index : index - 1;
                 mFolderPopupWindow.setSelection(index);
             }
-        } else if (id == packagenameR.getId("id", "btn_preview")) {
+        } else if (id == fakeR.getId("id", "btn_preview")) {
             Intent intent = new Intent(ImageGridActivity.this, ImagePreviewActivity.class);
             intent.putExtra(ImagePicker.EXTRA_SELECTED_IMAGE_POSITION, 0);
             intent.putExtra(ImagePicker.EXTRA_IMAGE_ITEMS, imagePicker.getSelectedImages());
             intent.putExtra(ImagePreviewActivity.ISORIGIN, isOrigin);
             intent.putExtra(ImagePicker.EXTRA_FROM_ITEMS,true);
             startActivityForResult(intent, ImagePicker.REQUEST_CODE_PREVIEW);
-        } else if (id == packagenameR.getId("id", "btn_back")) {
+        } else if (id == fakeR.getId("id", "btn_back")) {
             //点击返回按钮
             finish();
         }
@@ -289,17 +289,17 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
     @SuppressLint("StringFormatMatches")
     @Override
     public void onImageSelected(int position, ImageItem item, boolean isAdd) {
-        packagenameR = new PackageNameR(this);
+        fakeR = new FakeR(this);
         if (imagePicker.getSelectImageCount() > 0) {
-            mBtnOk.setText(getString(packagenameR.getId("string", "select_complete"), imagePicker.getSelectImageCount(), imagePicker.getSelectLimit()));
+            mBtnOk.setText(getString(fakeR.getId("string", "select_complete"), imagePicker.getSelectImageCount(), imagePicker.getSelectLimit()));
             mBtnOk.setEnabled(true);
             mBtnPre.setEnabled(true);
         } else {
-            mBtnOk.setText(getString(packagenameR.getId("string", "complete")));
+            mBtnOk.setText(getString(fakeR.getId("string", "complete")));
             mBtnOk.setEnabled(false);
             mBtnPre.setEnabled(false);
         }
-        mBtnPre.setText(getResources().getString(packagenameR.getId("string", "preview_count"), imagePicker.getSelectImageCount()));
+        mBtnPre.setText(getResources().getString(fakeR.getId("string", "preview_count"), imagePicker.getSelectImageCount()));
 //        mImageGridAdapter.notifyDataSetChanged();
 //        mRecyclerAdapter.notifyItemChanged(position); // 17/4/21 fix the position while click img to preview
 //        mRecyclerAdapter.notifyItemChanged(position + (imagePicker.isShowCamera() ? 1 : 0));// 17/4/24  fix the position while click right bottom preview button

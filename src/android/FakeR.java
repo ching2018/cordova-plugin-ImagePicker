@@ -24,16 +24,16 @@ import android.content.Context;
  *
  * @author Maciej Nux Jaros
  */
-public class PackageNameR {
+public class FakeR {
 	private Context context;
 	private String packageName;
 
-	public PackageNameR(Activity activity) {
+	public FakeR(Activity activity) {
 		context = activity.getApplicationContext();
 		packageName = context.getPackageName();
 	}
 
-	public PackageNameR(Context context) {
+	public FakeR(Context context) {
 		this.context = context;
 		packageName = context.getPackageName();
 	}

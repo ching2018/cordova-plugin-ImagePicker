@@ -10,7 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.holdskill.imagepicker.PackageNameR;
+import com.holdskill.imagepicker.FakeR;
 import com.holdskill.imagepicker.view.SystemBarTintManager;
 
 /**
@@ -25,18 +25,18 @@ import com.holdskill.imagepicker.view.SystemBarTintManager;
 public class ImageBaseActivity extends AppCompatActivity {
 
     protected SystemBarTintManager tintManager;
-    private PackageNameR packagenameR;
+    private FakeR fakeR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        packagenameR = new PackageNameR(this);
+        fakeR = new FakeR(this);
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(true);
         }
         tintManager = new SystemBarTintManager(this);
         tintManager.setStatusBarTintEnabled(true);
-        tintManager.setStatusBarTintResource(packagenameR.getId("color", "status_bar"));  //设置上方状态栏的颜色
+        tintManager.setStatusBarTintResource(fakeR.getId("color", "status_bar"));  //设置上方状态栏的颜色
     }
 
     @TargetApi(19)

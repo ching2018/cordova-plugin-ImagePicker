@@ -14,7 +14,7 @@ import com.holdskill.imagepicker.bean.ImageItem;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import com.holdskill.imagepicker.PackageNameR;
+import com.holdskill.imagepicker.FakeR;
 
 
 public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -33,7 +33,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
     private FragmentActivity activity;
     private OnImagesLoadedListener loadedListener;                     //图片加载完成的回调接口
     private ArrayList<ImageFolder> imageFolders = new ArrayList<ImageFolder>();   //所有的图片文件夹
-    private PackageNameR packagenameR;
+    private FakeR fakeR;
 
     /**
      * @param activity       用于初始化LoaderManager，需要兼容到2.3
@@ -70,7 +70,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        packagenameR = new PackageNameR(this);
+        fakeR = new FakeR(this);
 
         imageFolders.clear();
         if (data != null) {
@@ -115,7 +115,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
             if (data.getCount() > 0) {
                 //构造所有图片的集合
                 ImageFolder allImagesFolder = new ImageFolder();
-                allImagesFolder.name = activity.getResources().getString(packagenameR.getId("string", "all_images"));
+                allImagesFolder.name = activity.getResources().getString(fakeR.getId("string", "all_images"));
                 allImagesFolder.path = "/";
                 allImagesFolder.cover = allImages.get(0);
                 allImagesFolder.images = allImages;
