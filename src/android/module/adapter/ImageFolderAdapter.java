@@ -39,7 +39,7 @@ public class ImageFolderAdapter extends BaseAdapter {
     public ImageFolderAdapter(Activity activity, List<ImageFolder> folders) {
         mActivity = activity;
         if (folders != null && folders.size() > 0) imageFolders = folders;
-        else imageFolders = new ArrayList<>();
+        else imageFolders = new ArrayList<string>();
 
         imagePicker = ImagePicker.getInstance();
         mImageSize = Utils.getImageItemWidth(mActivity);

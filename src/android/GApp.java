@@ -25,8 +25,8 @@ public class GApp extends Application {
     public static ImageOptions xUtilsOptions = new ImageOptions.Builder()//
             .setIgnoreGif(true)                                //是否忽略GIF格式的图片
             .setImageScaleType(ImageView.ScaleType.FIT_CENTER)  //缩放模式
-            .setLoadingDrawableId(new PackageNameR(this)("mipmap", "default_image"))       //下载中显示的图片
-            .setFailureDrawableId(new PackageNameR(this)("mipmap", "default_image"))       //下载失败显示的图片
+            .setLoadingDrawableId((new PackageNameR(this)).getId("mipmap", "default_image"))       //下载中显示的图片
+            .setFailureDrawableId((new PackageNameR(this)).getId("mipmap", "default_image"))       //下载失败显示的图片
             .build();                                           //得到ImageOptions对象
 
     @Override

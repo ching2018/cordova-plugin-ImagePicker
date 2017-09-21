@@ -71,7 +71,7 @@ public class ImagePicker {
     private File takeImageFile;
     public Bitmap cropBitmap;
 
-    private ArrayList<ImageItem> mSelectedImages = new ArrayList<>();   //选中的图片集合
+    private ArrayList<ImageItem> mSelectedImages = new ArrayList<ImageItem>();   //选中的图片集合
     private List<ImageFolder> mImageFolders;      //所有的图片文件夹
     private int mCurrentImageFolderPosition = 0;  //当前选中的文件夹位置 0表示所有图片
     private List<OnImageSelectedListener> mImageSelectedListeners;          // 图片选中的监听回调

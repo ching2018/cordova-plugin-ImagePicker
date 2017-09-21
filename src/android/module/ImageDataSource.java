@@ -32,7 +32,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private FragmentActivity activity;
     private OnImagesLoadedListener loadedListener;                     //图片加载完成的回调接口
-    private ArrayList<ImageFolder> imageFolders = new ArrayList<>();   //所有的图片文件夹
+    private ArrayList<ImageFolder> imageFolders = new ArrayList<ImageFolder>();   //所有的图片文件夹
     private PackageNameR packagenameR;
 
     /**
@@ -74,7 +74,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
 
         imageFolders.clear();
         if (data != null) {
-            ArrayList<ImageItem> allImages = new ArrayList<>();   //所有图片的集合,不分文件夹
+            ArrayList<ImageItem> allImages = new ArrayList<ImageItem>();   //所有图片的集合,不分文件夹
             while (data.moveToNext()) {
                 //查询数据
                 String imageName = data.getString(data.getColumnIndexOrThrow(IMAGE_PROJECTION[0]));
@@ -102,7 +102,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
                 imageFolder.path = imageParentFile.getAbsolutePath();
 
                 if (!imageFolders.contains(imageFolder)) {
-                    ArrayList<ImageItem> images = new ArrayList<>();
+                    ArrayList<ImageItem> images = new ArrayList<ImageItem>();
                     images.add(imageItem);
                     imageFolder.cover = imageItem;
                     imageFolder.images = images;

@@ -37,7 +37,7 @@ public class ImageGridAdapter extends BaseAdapter {
 
     private ImagePicker imagePicker;
     private Activity mActivity;
-    private ArrayList<ImageItem> images = new ArrayList<>();       //当前需要显示的所有的图片数据
+    private ArrayList<ImageItem> images = new ArrayList<ImageItem>();       //当前需要显示的所有的图片数据
     private ArrayList<ImageItem> mSelectedImages; //全局保存的已经选中的图片数据
     private boolean isShowCamera;         //是否显示拍照按钮
     private int mImageSize;               //每个条目的大小
