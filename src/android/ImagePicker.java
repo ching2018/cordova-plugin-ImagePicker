@@ -1,4 +1,4 @@
-package com.holdskill.imagePicker;
+package com.holdskill.imagepicker;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -66,7 +66,7 @@ public class ImagePicker extends CordovaPlugin {
                 e.printStackTrace();
             }
             try {
-                intent.putExtra(PickerConfig.SELECT_MODE,jsonObject.getInt("image"));//default image and video (Optional)
+                intent.putExtra(PickerConfig.SELECT_MODE,jsonObject.getInt("selectMode"));//default image and video (Optional)
             } catch (Exception e) {
                 e.printStackTrace();
             }
