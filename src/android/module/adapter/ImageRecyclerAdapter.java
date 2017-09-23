@@ -59,7 +59,7 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
     public void refreshData(ArrayList<ImageItem> images) {
-        if (images == null || images.size() == 0) this.images = new ArrayList<>();
+        if (images == null || images.size() == 0) this.images = new ArrayList<ImageItem>();
         else this.images = images;
         notifyDataSetChanged();
     }
@@ -69,7 +69,7 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
      */
     public ImageRecyclerAdapter(Activity activity, ArrayList<ImageItem> images) {
         this.mActivity = activity;
-        if (images == null || images.size() == 0) this.images = new ArrayList<>();
+        if (images == null || images.size() == 0) this.images = new ArrayList<ImageItem>();
         else this.images = images;
 
         mImageSize = Utils.getImageItemWidth(mActivity);
