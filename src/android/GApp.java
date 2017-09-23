@@ -14,7 +14,6 @@ import org.xutils.x;
 
 
 public class GApp extends Application {
-    private FakeR fakeR;
 
     public static DisplayImageOptions imageLoaderOptions = new DisplayImageOptions.Builder()//
             .showImageOnLoading((new FakeR(this)).getId("mipmap", "default_image"))         //设置图片在下载期间显示的图片
