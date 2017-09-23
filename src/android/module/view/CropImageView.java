@@ -24,7 +24,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 
-import com.your.package.name.R;
+import com.holdskill.youji.R;
 
 import java.io.File;
 import java.io.IOException;

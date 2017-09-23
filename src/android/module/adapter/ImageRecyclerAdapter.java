@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.holdskill.imagepicker.ImagePicker;
-import com.your.package.name.R;
+import com.holdskill.youji.R;
 import com.holdskill.imagepicker.bean.ImageItem;
 import com.holdskill.imagepicker.ui.ImageBaseActivity;
 import com.holdskill.imagepicker.ui.ImageGridActivity;

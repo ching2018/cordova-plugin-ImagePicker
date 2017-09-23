@@ -20,7 +20,7 @@ import android.widget.GridView;
 import com.holdskill.imagepicker.DataHolder;
 import com.holdskill.imagepicker.ImageDataSource;
 import com.holdskill.imagepicker.ImagePicker;
-import com.your.package.name.R;
+import com.holdskill.youji.R;
 import com.holdskill.imagepicker.adapter.ImageFolderAdapter;
 import com.holdskill.imagepicker.adapter.ImageRecyclerAdapter;
 import com.holdskill.imagepicker.adapter.ImageRecyclerAdapter.OnImageItemClickListener;

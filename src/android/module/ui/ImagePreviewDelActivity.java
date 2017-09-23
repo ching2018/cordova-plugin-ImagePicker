@@ -10,7 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.holdskill.imagepicker.ImagePicker;
-import com.your.package.name.R;
+import com.holdskill.youji.R;
 
 /**
  * ================================================

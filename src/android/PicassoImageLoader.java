@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.widget.ImageView;
 
-import com.your.package.name.R;
+import com.holdskill.youji.R;
 import com.holdskill.imagepicker.loader.ImageLoader;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
