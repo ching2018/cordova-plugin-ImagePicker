@@ -14,9 +14,10 @@ import org.xutils.x;
 
 
 public class GApp extends Application {
+    private FakeR fakeR;
 
     public static DisplayImageOptions imageLoaderOptions = new DisplayImageOptions.Builder()//
-            .showImageOnLoading((new FakeR(this)).getId("mipmap", "default_image"))         //设置图片在下载期间显示的图片
+            .showImageOnLoading(R.mipmap.default_image)         //设置图片在下载期间显示的图片
             .showImageForEmptyUri(R.mipmap.default_image)       //设置图片Uri为空或是错误的时候显示的图片
             .showImageOnFail(R.mipmap.default_image)            //设置图片加载/解码过程中错误时候显示的图片
             .cacheInMemory(true)                                //设置下载的图片是否缓存在内存中
