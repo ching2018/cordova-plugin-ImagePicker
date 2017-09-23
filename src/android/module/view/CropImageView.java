@@ -98,18 +98,17 @@ public class CropImageView extends AppCompatImageView {
 
     public CropImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        fakeR  = new FakeR(this);
         mFocusWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mFocusWidth, getResources().getDisplayMetrics());
         mFocusHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mFocusHeight, getResources().getDisplayMetrics());
         mBorderWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mBorderWidth, getResources().getDisplayMetrics());
 
-        TypedArray a = context.obtainStyledAttributes(attrs, fakeR.getId("styleable", "CropImageView"));
-        mMaskColor = a.getColor(fakeR.getId("styleable", "CropImageView_cropMaskColor"), mMaskColor);
-        mBorderColor = a.getColor(fakeR.getId("styleable", "CropImageView_cropBorderColor"), mBorderColor);
-        mBorderWidth = a.getDimensionPixelSize(fakeR.getId("styleable", "CropImageView_cropBorderWidth"), mBorderWidth);
-        mFocusWidth = a.getDimensionPixelSize(fakeR.getId("styleable", "CropImageView_cropFocusWidth"), mFocusWidth);
-        mFocusHeight = a.getDimensionPixelSize(fakeR.getId("styleable", "CropImageView_cropFocusHeight"), mFocusHeight);
-        mDefaultStyleIndex = a.getInteger(fakeR.getId("styleable", "CropImageView_cropStyle"), mDefaultStyleIndex);
+        TypedArray a = context.obtainStyledAttributes(attrs, fakeR.getStyleableArray(context, "CropImageView"));
+        mMaskColor = a.getColor(fakeR.getStyleable(context, "CropImageView_cropMaskColor"), mMaskColor);
+        mBorderColor = a.getColor(fakeR.getStyleable(context, "CropImageView_cropBorderColor"), mBorderColor);
+        mBorderWidth = a.getDimensionPixelSize(fakeR.getStyleable(context, "CropImageView_cropBorderWidth"), mBorderWidth);
+        mFocusWidth = a.getDimensionPixelSize(fakeR.getStyleable(context, "CropImageView_cropFocusWidth"), mFocusWidth);
+        mFocusHeight = a.getDimensionPixelSize(fakeR.getStyleable(context, "CropImageView_cropFocusHeight"), mFocusHeight);
+        mDefaultStyleIndex = a.getInteger(fakeR.getStyleable(context, "CropImageView_cropStyle"), mDefaultStyleIndex);
         mStyle = styles[mDefaultStyleIndex];
         a.recycle();
 

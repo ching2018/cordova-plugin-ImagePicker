@@ -167,13 +167,12 @@ public class ImagePreviewActivity extends ImagePreviewBaseActivity implements Im
     /** 单击时，隐藏头和尾 */
     @Override
     public void onImageSingleTap() {
-        
         if (topBar.getVisibility() == View.VISIBLE) {
             topBar.setAnimation(AnimationUtils.loadAnimation(this, fakeR.getId("anim", "top_out")));
             bottomBar.setAnimation(AnimationUtils.loadAnimation(this, fakeR.getId("anim", "fade_out")));
             topBar.setVisibility(View.GONE);
             bottomBar.setVisibility(View.GONE);
-            tintManager.setStatusBarTintResource(R.color.transparent);//通知栏所需颜色
+            tintManager.setStatusBarTintResource(fakeR.getId("color", "transparent"));//通知栏所需颜色
             //给最外层布局加上这个属性表示，Activity全屏显示，且状态栏被隐藏覆盖掉。
 //            if (Build.VERSION.SDK_INT >= 16) content.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         } else {

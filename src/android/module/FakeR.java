@@ -15,6 +15,7 @@ package com.holdskill.imagepicker;
 
 import android.app.Activity;
 import android.content.Context;
+import java.lang.reflect.Field;
 
 /**
  * R replacement for PhoneGap Build.
@@ -44,5 +45,40 @@ public class FakeR {
 
 	public static int getId(Context context, String group, String key) {
 		return context.getResources().getIdentifier(key, group, context.getPackageName());
+	}
+
+	private static Object getResourceId(Context context, String name, String type) {
+		String className = context.getPackageName() +".R";
+		try {
+			Class cls = Class.forName(className);
+			for (Class childClass : cls.getClasses()) {
+				String simple = childClass.getSimpleName();
+				if (simple.equals(type)) {
+					for (Field field : childClass.getFields()) {
+						String fieldName = field.getName();
+						if (fieldName.equals(name)) {
+							System.out.println(fieldName);
+							return field.get(null);
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		return null;
+	}
+
+	public static int getStyleable(Context context, String name) {
+
+		return ((Integer)getResourceId(context, name, "styleable")).intValue();
+
+	}
+
+	public static int[] getStyleableArray(Context context, String name) {
+
+		return (int[])getResourceId(context, name, "styleable");
+
 	}
 }
