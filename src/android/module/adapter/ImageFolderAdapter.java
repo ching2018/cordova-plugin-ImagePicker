@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.holdskill.imagepicker.ImagePicker;
-import com.holdskill.youji.R;
+import com.holdskill.imagepicker.FakeR;
 import com.holdskill.imagepicker.util.Utils;
 import com.holdskill.imagepicker.bean.ImageFolder;
 
@@ -34,6 +34,7 @@ public class ImageFolderAdapter extends BaseAdapter {
     private int mImageSize;
     private List<ImageFolder> imageFolders;
     private int lastSelected = 0;
+    private FakeR fakeR;
 
     public ImageFolderAdapter(Activity activity, List<ImageFolder> folders) {
         mActivity = activity;
@@ -68,9 +69,11 @@ public class ImageFolderAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        
+
         ViewHolder holder;
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.adapter_folder_list_item, parent, false);
+            convertView = mInflater.inflate(fakeR.getId("layout", "adapter_folder_list_item"), parent, false);
             holder = new ViewHolder(convertView);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -78,7 +81,7 @@ public class ImageFolderAdapter extends BaseAdapter {
 
         ImageFolder folder = getItem(position);
         holder.folderName.setText(folder.name);
-        holder.imageCount.setText(mActivity.getString(R.string.folder_image_count, folder.images.size()));
+        holder.imageCount.setText(mActivity.getString(fakeR.getId("string", "folder_image_count"), folder.images.size()));
         imagePicker.getImageLoader().displayImage(mActivity, folder.cover.path, holder.cover, mImageSize, mImageSize);
 
         if (lastSelected == position) {
@@ -109,10 +112,12 @@ public class ImageFolderAdapter extends BaseAdapter {
         ImageView folderCheck;
 
         public ViewHolder(View view) {
-            cover = (ImageView) view.findViewById(R.id.iv_cover);
-            folderName = (TextView) view.findViewById(R.id.tv_folder_name);
-            imageCount = (TextView) view.findViewById(R.id.tv_image_count);
-            folderCheck = (ImageView) view.findViewById(R.id.iv_folder_check);
+            
+
+            cover = (ImageView) view.findViewById(fakeR.getId("id", "iv_cover"));
+            folderName = (TextView) view.findViewById(fakeR.getId("id", "tv_folder_name"));
+            imageCount = (TextView) view.findViewById(fakeR.getId("id", "tv_image_count"));
+            folderCheck = (ImageView) view.findViewById(fakeR.getId("id", "iv_folder_check"));
             view.setTag(this);
         }
     }

@@ -24,7 +24,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 
-import com.holdskill.youji.R;
+import com.holdskill.imagepicker.FakeR;
 
 import java.io.File;
 import java.io.IOException;
@@ -86,6 +86,7 @@ public class CropImageView extends AppCompatImageView {
     private boolean isInited = false;   //是否经过了 onSizeChanged 初始化
     private boolean mSaving = false;    //是否正在保存
     private static Handler mHandler = new InnerHandler();
+    private FakeR fakeR;
 
     public CropImageView(Context context) {
         this(context, null);
@@ -96,18 +97,19 @@ public class CropImageView extends AppCompatImageView {
     }
 
     public CropImageView(Context context, AttributeSet attrs, int defStyle) {
+        
         super(context, attrs, defStyle);
         mFocusWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mFocusWidth, getResources().getDisplayMetrics());
         mFocusHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mFocusHeight, getResources().getDisplayMetrics());
         mBorderWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mBorderWidth, getResources().getDisplayMetrics());
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CropImageView);
-        mMaskColor = a.getColor(R.styleable.CropImageView_cropMaskColor, mMaskColor);
-        mBorderColor = a.getColor(R.styleable.CropImageView_cropBorderColor, mBorderColor);
-        mBorderWidth = a.getDimensionPixelSize(R.styleable.CropImageView_cropBorderWidth, mBorderWidth);
-        mFocusWidth = a.getDimensionPixelSize(R.styleable.CropImageView_cropFocusWidth, mFocusWidth);
-        mFocusHeight = a.getDimensionPixelSize(R.styleable.CropImageView_cropFocusHeight, mFocusHeight);
-        mDefaultStyleIndex = a.getInteger(R.styleable.CropImageView_cropStyle, mDefaultStyleIndex);
+        TypedArray a = context.obtainStyledAttributes(attrs, fakeR.getId("styleable", "CropImageView"));
+        mMaskColor = a.getColor(fakeR.getId("styleable", "CropImageView_cropMaskColor"), mMaskColor);
+        mBorderColor = a.getColor(fakeR.getId("styleable", "CropImageView_cropBorderColor"), mBorderColor);
+        mBorderWidth = a.getDimensionPixelSize(fakeR.getId("styleable", "CropImageView_cropBorderWidth"), mBorderWidth);
+        mFocusWidth = a.getDimensionPixelSize(fakeR.getId("styleable", "CropImageView_cropFocusWidth"), mFocusWidth);
+        mFocusHeight = a.getDimensionPixelSize(fakeR.getId("styleable", "CropImageView_cropFocusHeight"), mFocusHeight);
+        mDefaultStyleIndex = a.getInteger(fakeR.getId("styleable", "CropImageView_cropStyle"), mDefaultStyleIndex);
         mStyle = styles[mDefaultStyleIndex];
         a.recycle();
 

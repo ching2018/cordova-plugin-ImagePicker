@@ -323,7 +323,7 @@ public class ImagePicker {
     }
 
     public void addOnImageSelectedListener(OnImageSelectedListener l) {
-        if (mImageSelectedListeners == null) mImageSelectedListeners = new ArrayList<OnImageSelectedListener>();
+        if (mImageSelectedListeners == null) mImageSelectedListeners = new ArrayList<>();
         mImageSelectedListeners.add(l);
     }
 

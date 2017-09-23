@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.holdskill.imagepicker.loader.ImageLoader;
-import com.holdskill.youji.R;
+import com.holdskill.imagepicker.FakeR;
 
 import java.io.File;
 
@@ -20,14 +20,16 @@ import java.io.File;
  * ================================================
  */
 public class GlideImageLoader implements ImageLoader {
+    private FakeR fakeR;
 
     @Override
     public void displayImage(Activity activity, String path, ImageView imageView, int width, int height) {
+        
 
         Glide.with(activity)                             //配置上下文
                 .load(Uri.fromFile(new File(path)))      //设置图片路径(fix #8,文件名包含%符号 无法识别和显示)
-                .error(R.mipmap.default_image)           //设置错误图片
-                .placeholder(R.mipmap.default_image)     //设置占位图片
+                .error(fakeR.getId("mipmap", "default_image"))           //设置错误图片
+                .placeholder(fakeR.getId("mipmap", "default_image"))     //设置占位图片
                 .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
                 .into(imageView);
     }
