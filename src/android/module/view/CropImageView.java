@@ -97,8 +97,8 @@ public class CropImageView extends AppCompatImageView {
     }
 
     public CropImageView(Context context, AttributeSet attrs, int defStyle) {
-        
         super(context, attrs, defStyle);
+        fakeR  = new FakeR(this);
         mFocusWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mFocusWidth, getResources().getDisplayMetrics());
         mFocusHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mFocusHeight, getResources().getDisplayMetrics());
         mBorderWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mBorderWidth, getResources().getDisplayMetrics());
