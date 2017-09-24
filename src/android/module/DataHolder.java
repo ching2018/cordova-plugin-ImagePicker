@@ -32,7 +32,7 @@ public class DataHolder {
     }
 
     private DataHolder() {
-        data = new HashMap<>();
+        data = new HashMap<String, List<ImageItem>>();
     }
 
     public void save(String id, List<ImageItem> object) {

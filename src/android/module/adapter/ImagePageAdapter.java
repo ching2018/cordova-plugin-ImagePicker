@@ -29,7 +29,7 @@ public class ImagePageAdapter extends PagerAdapter {
     private int screenWidth;
     private int screenHeight;
     private ImagePicker imagePicker;
-    private ArrayList<ImageItem> images = new ArrayList<>();
+    private ArrayList<ImageItem> images = new ArrayList<ImageItem>();
     private Activity mActivity;
     public PhotoViewClickListener listener;
 
