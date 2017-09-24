@@ -125,7 +125,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
             if (data.getCount() > 0 && allImages.size()>0) {
                 //构造所有图片的集合
                 ImageFolder allImagesFolder = new ImageFolder();
-                allImagesFolder.name = activity.getResources().getString(R.string.ip_all_images);
+                allImagesFolder.name = activity.getResources().getString(com.holdskill.youji.R.string.ip_all_images);
                 allImagesFolder.path = "/";
                 allImagesFolder.cover = allImages.get(0);
                 allImagesFolder.images = allImages;
