@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
-import com.holdskill.imagepicker.FakeR;
+import com.holdskill.youji.R;
 
 /**
  * ================================================
@@ -33,17 +33,16 @@ public class FolderPopUpWindow extends PopupWindow implements View.OnClickListen
     private final View masker;
     private final View marginView;
     private int marginPx;
-    private FakeR fakeR;
 
     public FolderPopUpWindow(Context context, BaseAdapter adapter) {
         super(context);
 
-        final View view = View.inflate(context, fakeR.getId("layout", "pop_folder"), null);
-        masker = view.findViewById(fakeR.getId("id", "masker"));
+        final View view = View.inflate(context, R.layout.pop_folder, null);
+        masker = view.findViewById(R.id.masker);
         masker.setOnClickListener(this);
-        marginView = view.findViewById(fakeR.getId("id", "margin"));
+        marginView = view.findViewById(R.id.margin);
         marginView.setOnClickListener(this);
-        listView = (ListView) view.findViewById(fakeR.getId("id", "listView"));
+        listView = (ListView) view.findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
         setContentView(view);

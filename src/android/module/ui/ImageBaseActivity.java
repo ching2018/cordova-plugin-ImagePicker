@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.holdskill.imagepicker.ImagePicker;
-import com.holdskill.imagepicker.FakeR;
+import com.holdskill.youji.R;
 import com.holdskill.imagepicker.view.SystemBarTintManager;
 
 /**
@@ -27,7 +27,6 @@ import com.holdskill.imagepicker.view.SystemBarTintManager;
 public class ImageBaseActivity extends AppCompatActivity {
 
     protected SystemBarTintManager tintManager;
-    private FakeR fakeR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +36,7 @@ public class ImageBaseActivity extends AppCompatActivity {
         }
         tintManager = new SystemBarTintManager(this);
         tintManager.setStatusBarTintEnabled(true);
-        tintManager.setStatusBarTintResource(fakeR.getId("color", "ip_color_primary_dark"));  //设置上方状态栏的颜色
+        tintManager.setStatusBarTintResource(R.color.ip_color_primary_dark);  //设置上方状态栏的颜色
     }
 
     @TargetApi(19)
