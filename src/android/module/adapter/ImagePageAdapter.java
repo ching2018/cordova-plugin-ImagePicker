@@ -17,7 +17,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
  * ================================================
- * 作    者：jeasonholdskill（廖子尧 Github地址：https://github.com/jeasonholdskill0216
+ * 作    者：jeasonlzy（廖子尧 Github地址：https://github.com/jeasonlzy0216
  * 版    本：1.0
  * 创建日期：2016/5/19
  * 描    述：
@@ -29,7 +29,7 @@ public class ImagePageAdapter extends PagerAdapter {
     private int screenWidth;
     private int screenHeight;
     private ImagePicker imagePicker;
-    private ArrayList<ImageItem> images = new ArrayList<ImageItem>();
+    private ArrayList<ImageItem> images = new ArrayList<>();
     private Activity mActivity;
     public PhotoViewClickListener listener;
 
@@ -55,7 +55,7 @@ public class ImagePageAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         PhotoView photoView = new PhotoView(mActivity);
         ImageItem imageItem = images.get(position);
-        imagePicker.getImageLoader().displayImage(mActivity, imageItem.path, photoView, screenWidth, screenHeight);
+        imagePicker.getImageLoader().displayImagePreview(mActivity, imageItem.path, photoView, screenWidth, screenHeight);
         photoView.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
             @Override
             public void onPhotoTap(View view, float x, float y) {

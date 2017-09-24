@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
@@ -30,12 +31,11 @@ import java.util.Locale;
 
 /**
  * ================================================
- * 作    者：jeasonholdskill（廖子尧 Github地址：https://github.com/jeasonholdskill0216
+ * 作    者：jeasonlzy（廖子尧 Github地址：https://github.com/jeasonlzy0216
  * 版    本：1.0
  * 创建日期：2016/5/19
  * 描    述：图片选择的入口类
  * 修订历史：
- * <p>
  * 2017-03-20
  *
  * @author nanchen
@@ -71,7 +71,7 @@ public class ImagePicker {
     private File takeImageFile;
     public Bitmap cropBitmap;
 
-    private ArrayList<ImageItem> mSelectedImages = new ArrayList<ImageItem>();   //选中的图片集合
+    private ArrayList<ImageItem> mSelectedImages = new ArrayList<>();   //选中的图片集合
     private List<ImageFolder> mImageFolders;      //所有的图片文件夹
     private int mCurrentImageFolderPosition = 0;  //当前选中的文件夹位置 0表示所有图片
     private List<OnImageSelectedListener> mImageSelectedListeners;          // 图片选中的监听回调
@@ -230,7 +230,6 @@ public class ImagePicker {
         return mSelectedImages;
     }
 
-
     public void clearSelectedImages() {
         if (mSelectedImages != null) mSelectedImages.clear();
     }
@@ -257,8 +256,7 @@ public class ImagePicker {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         takePictureIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         if (takePictureIntent.resolveActivity(activity.getPackageManager()) != null) {
-            if (Utils.existSDCard())
-                takeImageFile = new File(Environment.getExternalStorageDirectory(), "/DCIM/camera/");
+            if (Utils.existSDCard()) takeImageFile = new File(Environment.getExternalStorageDirectory(), "/DCIM/camera/");
             else takeImageFile = Environment.getDataDirectory();
             takeImageFile = createFile(takeImageFile, "IMG_", ".jpg");
             if (takeImageFile != null) {
@@ -272,19 +270,16 @@ public class ImagePicker {
                     uri = Uri.fromFile(takeImageFile);
                 } else {
 
-
                     /**
                      * 7.0 调用系统相机拍照不再允许使用Uri方式，应该替换为FileProvider
                      * 并且这样可以解决MIUI系统上拍照返回size为0的情况
                      */
                     uri = FileProvider.getUriForFile(activity, ProviderUtil.getFileProviderName(activity), takeImageFile);
                     //加入uri权限 要不三星手机不能拍照
-                    List<ResolveInfo> resInfoList = activity.getPackageManager().queryIntentActivities
-                            (takePictureIntent, PackageManager.MATCH_DEFAULT_ONLY);
+                    List<ResolveInfo> resInfoList = activity.getPackageManager().queryIntentActivities(takePictureIntent, PackageManager.MATCH_DEFAULT_ONLY);
                     for (ResolveInfo resolveInfo : resInfoList) {
                         String packageName = resolveInfo.activityInfo.packageName;
-                        activity.grantUriPermission(packageName, uri, Intent
-                                .FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        activity.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     }
                 }
 
@@ -323,7 +318,7 @@ public class ImagePicker {
     }
 
     public void addOnImageSelectedListener(OnImageSelectedListener l) {
-        if (mImageSelectedListeners == null) mImageSelectedListeners = new ArrayList<OnImageSelectedListener>();
+        if (mImageSelectedListeners == null) mImageSelectedListeners = new ArrayList<>();
         mImageSelectedListeners.add(l);
     }
 
@@ -350,6 +345,44 @@ public class ImagePicker {
         for (OnImageSelectedListener l : mImageSelectedListeners) {
             l.onImageSelected(position, item, isAdd);
         }
+    }
+
+    /**
+     * 用于手机内存不足，进程被系统回收，重启时的状态恢复
+     */
+    public void restoreInstanceState(Bundle savedInstanceState) {
+        cropCacheFolder = (File) savedInstanceState.getSerializable("cropCacheFolder");
+        takeImageFile = (File) savedInstanceState.getSerializable("takeImageFile");
+        imageLoader = (ImageLoader) savedInstanceState.getSerializable("imageLoader");
+        style = (CropImageView.Style) savedInstanceState.getSerializable("style");
+        multiMode = savedInstanceState.getBoolean("multiMode");
+        crop = savedInstanceState.getBoolean("crop");
+        showCamera = savedInstanceState.getBoolean("showCamera");
+        isSaveRectangle = savedInstanceState.getBoolean("isSaveRectangle");
+        selectLimit = savedInstanceState.getInt("selectLimit");
+        outPutX = savedInstanceState.getInt("outPutX");
+        outPutY = savedInstanceState.getInt("outPutY");
+        focusWidth = savedInstanceState.getInt("focusWidth");
+        focusHeight = savedInstanceState.getInt("focusHeight");
+    }
+
+    /**
+     * 用于手机内存不足，进程被系统回收时的状态保存
+     */
+    public void saveInstanceState(Bundle outState) {
+        outState.putSerializable("cropCacheFolder", cropCacheFolder);
+        outState.putSerializable("takeImageFile", takeImageFile);
+        outState.putSerializable("imageLoader", imageLoader);
+        outState.putSerializable("style", style);
+        outState.putBoolean("multiMode", multiMode);
+        outState.putBoolean("crop", crop);
+        outState.putBoolean("showCamera", showCamera);
+        outState.putBoolean("isSaveRectangle", isSaveRectangle);
+        outState.putInt("selectLimit", selectLimit);
+        outState.putInt("outPutX", outPutX);
+        outState.putInt("outPutY", outPutY);
+        outState.putInt("focusWidth", focusWidth);
+        outState.putInt("focusHeight", focusHeight);
     }
 
 }

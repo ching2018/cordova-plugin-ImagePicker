@@ -2,6 +2,7 @@ package com.holdskill.imagepicker.ui;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -10,7 +11,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.holdskill.imagepicker.ImagePicker;
-import com.holdskill.imagepicker.FakeR;
+import com.holdskill.youji.R;
+import com.holdskill.imagepicker.util.NavigationBarChangeListener;
 
 /**
  * ================================================
@@ -22,43 +24,51 @@ import com.holdskill.imagepicker.FakeR;
  * ================================================
  */
 public class ImagePreviewDelActivity extends ImagePreviewBaseActivity implements View.OnClickListener {
-    private FakeR fakeR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        
         super.onCreate(savedInstanceState);
 
-        ImageView mBtnDel = (ImageView) findViewById(fakeR.getId("id", "btn_del"));
+        ImageView mBtnDel = (ImageView) findViewById(R.id.btn_del);
         mBtnDel.setOnClickListener(this);
         mBtnDel.setVisibility(View.VISIBLE);
-        topBar.findViewById(fakeR.getId("id", "btn_back")).setOnClickListener(this);
+        topBar.findViewById(R.id.btn_back).setOnClickListener(this);
 
-        mTitleCount.setText(getString(fakeR.getId("string", "preview_image_count"), mCurrentPosition + 1, mImageItems.size()));
+        mTitleCount.setText(getString(R.string.ip_preview_image_count, mCurrentPosition + 1, mImageItems.size()));
         //滑动ViewPager的时候，根据外界的数据改变当前的选中状态和当前的图片的位置描述文本
         mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 mCurrentPosition = position;
-                mTitleCount.setText(getString(fakeR.getId("string", "preview_image_count"), mCurrentPosition + 1, mImageItems.size()));
+                mTitleCount.setText(getString(R.string.ip_preview_image_count, mCurrentPosition + 1, mImageItems.size()));
             }
         });
+        NavigationBarChangeListener.with(this, NavigationBarChangeListener.ORIENTATION_HORIZONTAL)
+                .setListener(new NavigationBarChangeListener.OnSoftInputStateChangeListener() {
+                    @Override
+                    public void onNavigationBarShow(int orientation, int height) {
+                        topBar.setPadding(0, 0, height, 0);
+                    }
+
+                    @Override
+                    public void onNavigationBarHide(int orientation) {
+                        topBar.setPadding(0, 0, 0, 0);
+                    }
+                });
     }
 
     @Override
     public void onClick(View v) {
-        
         int id = v.getId();
-        if (id == fakeR.getId("id", "btn_del")) {
+        if (id == R.id.btn_del) {
             showDeleteDialog();
-        } else if (id == fakeR.getId("id", "btn_back")) {
+        } else if (id == R.id.btn_back) {
             onBackPressed();
         }
     }
 
     /** 是否删除此张图片 */
     private void showDeleteDialog() {
-        
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("提示");
         builder.setMessage("要删除这张照片吗？");
@@ -71,7 +81,7 @@ public class ImagePreviewDelActivity extends ImagePreviewBaseActivity implements
                 if (mImageItems.size() > 0) {
                     mAdapter.setData(mImageItems);
                     mAdapter.notifyDataSetChanged();
-                    mTitleCount.setText(getString(fakeR.getId("string", "preview_image_count"), mCurrentPosition + 1, mImageItems.size()));
+                    mTitleCount.setText(getString(R.string.ip_preview_image_count, mCurrentPosition + 1, mImageItems.size()));
                 } else {
                     onBackPressed();
                 }
@@ -93,17 +103,16 @@ public class ImagePreviewDelActivity extends ImagePreviewBaseActivity implements
     /** 单击时，隐藏头和尾 */
     @Override
     public void onImageSingleTap() {
-        
         if (topBar.getVisibility() == View.VISIBLE) {
-            topBar.setAnimation(AnimationUtils.loadAnimation(this, fakeR.getId("anim", "top_out")));
+            topBar.setAnimation(AnimationUtils.loadAnimation(this, com.holdskill.imagepicker.R.anim.top_out));
             topBar.setVisibility(View.GONE);
-            tintManager.setStatusBarTintResource(fakeR.getId("color", "transparent"));//通知栏所需颜色
+            tintManager.setStatusBarTintResource(Color.TRANSPARENT);//通知栏所需颜色
             //给最外层布局加上这个属性表示，Activity全屏显示，且状态栏被隐藏覆盖掉。
 //            if (Build.VERSION.SDK_INT >= 16) content.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         } else {
-            topBar.setAnimation(AnimationUtils.loadAnimation(this, fakeR.getId("anim", "top_in")));
+            topBar.setAnimation(AnimationUtils.loadAnimation(this, com.holdskill.imagepicker.R.anim.top_in));
             topBar.setVisibility(View.VISIBLE);
-            tintManager.setStatusBarTintResource(fakeR.getId("color", "status_bar"));//通知栏所需颜色
+            tintManager.setStatusBarTintResource(R.color.ip_color_primary_dark);//通知栏所需颜色
             //Activity全屏显示，但状态栏不会被隐藏覆盖，状态栏依然可见，Activity顶端布局部分会被状态遮住
 //            if (Build.VERSION.SDK_INT >= 16) content.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }

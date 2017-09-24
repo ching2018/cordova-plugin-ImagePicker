@@ -1,4 +1,5 @@
 package com.holdskill.imagepicker.ui;
+
 import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -10,7 +11,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.holdskill.imagepicker.FakeR;
+import com.holdskill.imagepicker.ImagePicker;
+import com.holdskill.youji.R;
 import com.holdskill.imagepicker.view.SystemBarTintManager;
 
 /**
@@ -25,18 +27,16 @@ import com.holdskill.imagepicker.view.SystemBarTintManager;
 public class ImageBaseActivity extends AppCompatActivity {
 
     protected SystemBarTintManager tintManager;
-    private FakeR fakeR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(true);
         }
         tintManager = new SystemBarTintManager(this);
         tintManager.setStatusBarTintEnabled(true);
-        tintManager.setStatusBarTintResource(fakeR.getId("color", "status_bar"));  //设置上方状态栏的颜色
+        tintManager.setStatusBarTintResource(R.color.ip_color_primary_dark);  //设置上方状态栏的颜色
     }
 
     @TargetApi(19)
@@ -58,5 +58,17 @@ public class ImageBaseActivity extends AppCompatActivity {
 
     public void showToast(String toastText) {
         Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        ImagePicker.getInstance().restoreInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        ImagePicker.getInstance().saveInstanceState(outState);
     }
 }

@@ -1,4 +1,5 @@
 package com.holdskill.imagepicker.ui;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 
 import com.holdskill.imagepicker.util.BitmapUtil;
 import com.holdskill.imagepicker.ImagePicker;
-import com.holdskill.imagepicker.FakeR;
+import com.holdskill.youji.R;
 import com.holdskill.imagepicker.bean.ImageItem;
 import com.holdskill.imagepicker.view.CropImageView;
 
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 
 /**
  * ================================================
- * 作    者：jeasonholdskill（廖子尧 Github地址：https://github.com/jeasonholdskill0216
+ * 作    者：jeasonlzy（廖子尧 Github地址：https://github.com/jeasonlzy0216
  * 版    本：1.0
  * 创建日期：2016/5/19
  * 描    述：
@@ -35,24 +36,22 @@ public class ImageCropActivity extends ImageBaseActivity implements View.OnClick
     private int mOutputY;
     private ArrayList<ImageItem> mImageItems;
     private ImagePicker imagePicker;
-    private FakeR fakeR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        
         super.onCreate(savedInstanceState);
-        setContentView(fakeR.getId("layout", "activity_image_crop"));
+        setContentView(R.layout.activity_image_crop);
 
         imagePicker = ImagePicker.getInstance();
 
         //初始化View
-        findViewById(fakeR.getId("id", "btn_back")).setOnClickListener(this);
-        Button btn_ok = (Button) findViewById(fakeR.getId("id", "btn_ok"));
-        btn_ok.setText(getString(fakeR.getId("string", "complete")));
+        findViewById(R.id.btn_back).setOnClickListener(this);
+        Button btn_ok = (Button) findViewById(R.id.btn_ok);
+        btn_ok.setText(getString(R.string.ip_complete));
         btn_ok.setOnClickListener(this);
-        TextView tv_des = (TextView) findViewById(fakeR.getId("id", "tv_des"));
-        tv_des.setText(getString(fakeR.getId("string", "photo_crop")));
-        mCropImageView = (CropImageView) findViewById(fakeR.getId("id", "cv_crop_image"));
+        TextView tv_des = (TextView) findViewById(R.id.tv_des);
+        tv_des.setText(getString(R.string.ip_photo_crop));
+        mCropImageView = (CropImageView) findViewById(R.id.cv_crop_image);
         mCropImageView.setOnBitmapSaveCompleteListener(this);
 
         //获取需要的参数
@@ -97,12 +96,11 @@ public class ImageCropActivity extends ImageBaseActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        
         int id = v.getId();
-        if (id == fakeR.getId("id", "btn_back")) {
+        if (id == R.id.btn_back) {
             setResult(RESULT_CANCELED);
             finish();
-        } else if (id == fakeR.getId("id", "btn_ok")) {
+        } else if (id == R.id.btn_ok) {
             mCropImageView.saveBitmapToFile(imagePicker.getCropCacheFolder(this), mOutputX, mOutputY, mIsSaveRectangle);
         }
     }

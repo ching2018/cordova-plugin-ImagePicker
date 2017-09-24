@@ -14,9 +14,16 @@ import com.holdskill.imagepicker.bean.ImageItem;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import com.holdskill.imagepicker.FakeR;
 
-
+/**
+ * ================================================
+ * 作    者：jeasonlzy（廖子尧 Github地址：https://github.com/jeasonlzy0216
+ * 版    本：1.0
+ * 创建日期：2016/5/19
+ * 描    述：加载手机图片实现类
+ * 修订历史：
+ * ================================================
+ */
 public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
 
     public static final int LOADER_ALL = 0;         //加载所有图片
@@ -32,8 +39,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private FragmentActivity activity;
     private OnImagesLoadedListener loadedListener;                     //图片加载完成的回调接口
-    private ArrayList<ImageFolder> imageFolders = new ArrayList<ImageFolder>();   //所有的图片文件夹
-    private FakeR fakeR;
+    private ArrayList<ImageFolder> imageFolders = new ArrayList<>();   //所有的图片文件夹
 
     /**
      * @param activity       用于初始化LoaderManager，需要兼容到2.3
@@ -70,15 +76,19 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        
-
         imageFolders.clear();
         if (data != null) {
-            ArrayList<ImageItem> allImages = new ArrayList<ImageItem>();   //所有图片的集合,不分文件夹
+            ArrayList<ImageItem> allImages = new ArrayList<>();   //所有图片的集合,不分文件夹
             while (data.moveToNext()) {
                 //查询数据
                 String imageName = data.getString(data.getColumnIndexOrThrow(IMAGE_PROJECTION[0]));
                 String imagePath = data.getString(data.getColumnIndexOrThrow(IMAGE_PROJECTION[1]));
+                
+                File file = new File(imagePath);
+                if (!file.exists() || file.length() <= 0) {
+                    continue;
+                }
+
                 long imageSize = data.getLong(data.getColumnIndexOrThrow(IMAGE_PROJECTION[2]));
                 int imageWidth = data.getInt(data.getColumnIndexOrThrow(IMAGE_PROJECTION[3]));
                 int imageHeight = data.getInt(data.getColumnIndexOrThrow(IMAGE_PROJECTION[4]));
@@ -102,7 +112,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
                 imageFolder.path = imageParentFile.getAbsolutePath();
 
                 if (!imageFolders.contains(imageFolder)) {
-                    ArrayList<ImageItem> images = new ArrayList<ImageItem>();
+                    ArrayList<ImageItem> images = new ArrayList<>();
                     images.add(imageItem);
                     imageFolder.cover = imageItem;
                     imageFolder.images = images;
@@ -112,10 +122,10 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
                 }
             }
             //防止没有图片报异常
-            if (data.getCount() > 0) {
+            if (data.getCount() > 0 && allImages.size()>0) {
                 //构造所有图片的集合
                 ImageFolder allImagesFolder = new ImageFolder();
-                allImagesFolder.name = activity.getResources().getString(fakeR.getId("string", "all_images"));
+                allImagesFolder.name = activity.getResources().getString(R.string.ip_all_images);
                 allImagesFolder.path = "/";
                 allImagesFolder.cover = allImages.get(0);
                 allImagesFolder.images = allImages;

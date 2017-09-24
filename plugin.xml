@@ -199,23 +199,28 @@
 
 
         <source-file src="src/android/module/adapter/ImageFolderAdapter.java" target-dir="src/com/holdskill/imagepicker/adapter" />
-        <source-file src="src/android/module/adapter/ImageGridAdapter.java" target-dir="src/com/holdskill/imagepicker/adapter" />
         <source-file src="src/android/module/adapter/ImagePageAdapter.java" target-dir="src/com/holdskill/imagepicker/adapter" />
         <source-file src="src/android/module/adapter/ImageRecyclerAdapter.java" target-dir="src/com/holdskill/imagepicker/adapter" />
         <source-file src="src/android/module/bean/ImageFolder.java" target-dir="src/com/holdskill/imagepicker/bean" />
         <source-file src="src/android/module/bean/ImageItem.java" target-dir="src/com/holdskill/imagepicker/bean" />
+
         <source-file src="src/android/module/loader/ImageLoader.java" target-dir="src/com/holdskill/imagepicker/loader" />
+
         <source-file src="src/android/module/ui/ImageBaseActivity.java" target-dir="src/com/holdskill/imagepicker/ui" />
         <source-file src="src/android/module/ui/ImageCropActivity.java" target-dir="src/com/holdskill/imagepicker/ui" />
         <source-file src="src/android/module/ui/ImageGridActivity.java" target-dir="src/com/holdskill/imagepicker/ui" />
         <source-file src="src/android/module/ui/ImagePreviewActivity.java" target-dir="src/com/holdskill/imagepicker/ui" />
         <source-file src="src/android/module/ui/ImagePreviewBaseActivity.java" target-dir="src/com/holdskill/imagepicker/ui" />
         <source-file src="src/android/module/ui/ImagePreviewDelActivity.java" target-dir="src/com/holdskill/imagepicker/ui" />
+
         <source-file src="src/android/module/util/BitmapUtil.java" target-dir="src/com/holdskill/imagepicker/util" />
+        <source-file src="src/android/module/util/NavigationBarChangeListener.java" target-dir="src/com/holdskill/imagepicker/util" />
         <source-file src="src/android/module/util/ProviderUtil.java" target-dir="src/com/holdskill/imagepicker/util" />
         <source-file src="src/android/module/util/Utils.java" target-dir="src/com/holdskill/imagepicker/util" />
+
         <source-file src="src/android/module/view/CropImageView.java" target-dir="src/com/holdskill/imagepicker/view" />
         <source-file src="src/android/module/view/FolderPopUpWindow.java" target-dir="src/com/holdskill/imagepicker/view" />
+        <source-file src="src/android/module/view/GridSpacingItemDecoration.java" target-dir="src/com/holdskill/imagepicker/view" />
         <source-file src="src/android/module/view/SuperCheckBox.java" target-dir="src/com/holdskill/imagepicker/view" />
         <source-file src="src/android/module/view/SystemBarTintManager.java" target-dir="src/com/holdskill/imagepicker/view" />
         <source-file src="src/android/module/view/ViewPagerFixed.java" target-dir="src/com/holdskill/imagepicker/view" />
@@ -235,37 +240,33 @@
         <source-file src="src/android/module/FakeR.java" target-dir="src/com/holdskill/imagepicker" />
 
         <source-file src="src/android/ImagePickerMain.java" target-dir="src/com/holdskill/imagepicker" />
-        <source-file src="src/android/PicassoImageLoader.java" target-dir="src/com/holdskill/imagepicker" />
-        <source-file src="src/android/GApp.java" target-dir="src/com/holdskill/imagepicker" />
 
-        <source-file src="src/android/res/anim/bottom_in.xml" target-dir="res/anim"/>
-        <source-file src="src/android/res/anim/bottom_out.xml" target-dir="res/anim"/>
         <source-file src="src/android/res/anim/fade_in.xml" target-dir="res/anim"/>
         <source-file src="src/android/res/anim/fade_out.xml" target-dir="res/anim"/>
         <source-file src="src/android/res/anim/hide_to_bottom.xml" target-dir="res/anim"/>
-        <source-file src="src/android/res/anim/left_in.xml" target-dir="res/anim"/>
-        <source-file src="src/android/res/anim/left_out.xml" target-dir="res/anim"/>
-        <source-file src="src/android/res/anim/right_in.xml" target-dir="res/anim"/>
-        <source-file src="src/android/res/anim/right_out.xml" target-dir="res/anim"/>
-        <source-file src="src/android/res/anim/scale_in.xml" target-dir="res/anim"/>
-        <source-file src="src/android/res/anim/scale_out.xml" target-dir="res/anim"/>
         <source-file src="src/android/res/anim/show_from_bottom.xml" target-dir="res/anim"/>
         <source-file src="src/android/res/anim/top_in.xml" target-dir="res/anim"/>
         <source-file src="src/android/res/anim/top_out.xml" target-dir="res/anim"/>
 
 
 
-
+        <source-file src="src/android/res/drawable/bg_btn_dis.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/bg_btn_nor.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/bg_btn_pre.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/bg_folder_item.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/bg_image_folder.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/ic_arrow_back.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/ic_cover_shade.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/ic_default_image.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/ic_vector_check.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/ic_vector_delete.xml" target-dir="res/drawable"/>
         <source-file src="src/android/res/drawable/selector_back_press.xml" target-dir="res/drawable"/>
         <source-file src="src/android/res/drawable/selector_grid_camera_bg.xml" target-dir="res/drawable"/>
         <source-file src="src/android/res/drawable/selector_item_checked.xml" target-dir="res/drawable"/>
         <source-file src="src/android/res/drawable/selector_top_ok.xml" target-dir="res/drawable"/>
 
 
-        <source-file src="src/android/res/drawable-xxhdpi/bg_btn_dis.9.png" target-dir="res/drawable-xxhdpi"/>
-        <source-file src="src/android/res/drawable-xxhdpi/bg_btn_nor.9.png" target-dir="res/drawable-xxhdpi"/>
-        <source-file src="src/android/res/drawable-xxhdpi/bg_btn_pre.9.png" target-dir="res/drawable-xxhdpi"/>
-
+        <source-file src="src/android/res/drawable-v21/bg_folder_item.xml" target-dir="res/drawable-v21"/>
 
         <source-file src="src/android/res/layout/activity_image_crop.xml" target-dir="res/layout"/>
         <source-file src="src/android/res/layout/activity_image_grid.xml" target-dir="res/layout"/>
@@ -276,19 +277,23 @@
         <source-file src="src/android/res/layout/include_top_bar.xml" target-dir="res/layout"/>
         <source-file src="src/android/res/layout/pop_folder.xml" target-dir="res/layout"/>
 
+        <source-file src="src/android/res/drawable-xxhdpi/bg_btn_dis.9.png" target-dir="res/drawable-xxhdpi"/>
+        <source-file src="src/android/res/drawable-xxhdpi/bg_btn_nor.9.png" target-dir="res/drawable-xxhdpi"/>
+        <source-file src="src/android/res/drawable-xxhdpi/bg_btn_pre.9.png" target-dir="res/drawable-xxhdpi"/>
+
+
         <source-file src="src/android/res/mipmap-xxhdpi/checkbox_checked.png" target-dir="res/mipmap-xxhdpi"/>
         <source-file src="src/android/res/mipmap-xxhdpi/checkbox_normal.png" target-dir="res/mipmap-xxhdpi"/>
         <source-file src="src/android/res/mipmap-xxhdpi/default_image.png" target-dir="res/mipmap-xxhdpi"/>
         <source-file src="src/android/res/mipmap-xxhdpi/grid_camera.png" target-dir="res/mipmap-xxhdpi"/>
-        <source-file src="src/android/res/mipmap-xxhdpi/ic_back.png" target-dir="res/mipmap-xxhdpi"/>
-        <source-file src="src/android/res/mipmap-xxhdpi/ic_del.png" target-dir="res/mipmap-xxhdpi"/>
-        <source-file src="src/android/res/mipmap-xxhdpi/list_selected.png" target-dir="res/mipmap-xxhdpi"/>
-        <source-file src="src/android/res/mipmap-xxhdpi/text_indicator.png" target-dir="res/mipmap-xxhdpi"/>
 
 
         <source-file src="src/android/res/values/attrs.xml" target-dir="res/values"/>
         <source-file src="src/android/res/values/colors.xml" target-dir="res/values"/>
+        <source-file src="src/android/res/values/strings.xml" target-dir="res/values"/>
         <source-file src="src/android/res/values/styles.xml" target-dir="res/values"/>
+
+        <source-file src="src/android/res/values-v19/styles.xml" target-dir="res/values-v19"/>
 
 
 
