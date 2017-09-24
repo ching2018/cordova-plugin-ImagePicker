@@ -15,6 +15,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.holdskill.imagepicker.FakeR;
+
 /**
  * ================================================
  * 作    者：jeasonlzy（廖子尧 Github地址：https://github.com/jeasonlzy0216
@@ -40,6 +42,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
     private FragmentActivity activity;
     private OnImagesLoadedListener loadedListener;                     //图片加载完成的回调接口
     private ArrayList<ImageFolder> imageFolders = new ArrayList<ImageFolder>();   //所有的图片文件夹
+    private FakeR fakeR;
 
     /**
      * @param activity       用于初始化LoaderManager，需要兼容到2.3
@@ -125,7 +128,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
             if (data.getCount() > 0 && allImages.size()>0) {
                 //构造所有图片的集合
                 ImageFolder allImagesFolder = new ImageFolder();
-                allImagesFolder.name = activity.getResources().getString(com.holdskill.youji.R.string.ip_all_images);
+                allImagesFolder.name = activity.getResources().getString(fakeR.getId(this, "string", "ip_all_images"));
                 allImagesFolder.path = "/";
                 allImagesFolder.cover = allImages.get(0);
                 allImagesFolder.images = allImages;
