@@ -237,9 +237,9 @@
         <source-file src="src/android/module/ImagePicker.java" target-dir="src/com/holdskill/imagepicker" />
         <source-file src="src/android/module/ImagePickerProvider.java" target-dir="src/com/holdskill/imagepicker" />
         <source-file src="src/android/module/GlideImageLoader.java" target-dir="src/com/holdskill/imagepicker" />
-        <source-file src="src/android/module/FakeR.java" target-dir="src/com/holdskill/imagepicker" />
 
         <source-file src="src/android/ImagePickerMain.java" target-dir="src/com/holdskill/imagepicker" />
+        <source-file src="src/android/FakeR.java" target-dir="src/com/holdskill/imagepicker" />
 
         <source-file src="src/android/res/anim/fade_in.xml" target-dir="res/anim"/>
         <source-file src="src/android/res/anim/fade_out.xml" target-dir="res/anim"/>
