@@ -281,6 +281,7 @@
         <source-file src="src/android/res/mipmap-xxhdpi/checkbox_normal.png" target-dir="res/mipmap-xxhdpi"/>
         <source-file src="src/android/res/mipmap-xxhdpi/default_image.png" target-dir="res/mipmap-xxhdpi"/>
         <source-file src="src/android/res/mipmap-xxhdpi/grid_camera.png" target-dir="res/mipmap-xxhdpi"/>
+        <source-file src="src/android/res/mipmap-xxhdpi/text_indicator.png" target-dir="res/mipmap-xxhdpi"/>
 
 
         <source-file src="src/android/res/values/attrs.xml" target-dir="res/values"/>
