@@ -277,11 +277,6 @@
         <source-file src="src/android/res/layout/include_top_bar.xml" target-dir="res/layout"/>
         <source-file src="src/android/res/layout/pop_folder.xml" target-dir="res/layout"/>
 
-        <source-file src="src/android/res/drawable-xxhdpi/bg_btn_dis.9.png" target-dir="res/drawable-xxhdpi"/>
-        <source-file src="src/android/res/drawable-xxhdpi/bg_btn_nor.9.png" target-dir="res/drawable-xxhdpi"/>
-        <source-file src="src/android/res/drawable-xxhdpi/bg_btn_pre.9.png" target-dir="res/drawable-xxhdpi"/>
-
-
         <source-file src="src/android/res/mipmap-xxhdpi/checkbox_checked.png" target-dir="res/mipmap-xxhdpi"/>
         <source-file src="src/android/res/mipmap-xxhdpi/checkbox_normal.png" target-dir="res/mipmap-xxhdpi"/>
         <source-file src="src/android/res/mipmap-xxhdpi/default_image.png" target-dir="res/mipmap-xxhdpi"/>
