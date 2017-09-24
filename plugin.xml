@@ -284,6 +284,7 @@
 
 
         <source-file src="src/android/res/values/attrs.xml" target-dir="res/values"/>
+        <source-file src="src/android/res/values/colors.xml" target-dir="res/values"/>
         <source-file src="src/android/res/values/styles.xml" target-dir="res/values"/>
 
         <source-file src="src/android/res/values-v19/styles.xml" target-dir="res/values-v19"/>
