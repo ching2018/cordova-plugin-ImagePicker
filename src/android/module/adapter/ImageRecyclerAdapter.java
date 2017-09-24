@@ -82,10 +82,11 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        fakeR = new FakeR(mActivity);
         if (viewType == ITEM_TYPE_CAMERA){
-            return new CameraViewHolder(mInflater.inflate(fakeR.getId(this, "layout", "adapter_camera_item"),parent,false));
+            return new CameraViewHolder(mInflater.inflate(fakeR.getId("layout", "adapter_camera_item"),parent,false));
         }
-        return new ImageViewHolder(mInflater.inflate(fakeR.getId(this, "layout", "adapter_image_list_item"),parent,false));
+        return new ImageViewHolder(mInflater.inflate(fakeR.getId("layout", "adapter_image_list_item"),parent,false));
     }
 
     @Override
@@ -133,15 +134,17 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         ImageViewHolder(View itemView) {
             super(itemView);
+            fakeR = new FakeR(mActivity);
             rootView = itemView;
-            ivThumb = (ImageView) itemView.findViewById(fakeR.getId(this, "id", "iv_thumb"));
-            mask = itemView.findViewById(fakeR.getId(this, "id", "mask"));
-            checkView=itemView.findViewById(fakeR.getId(this, "id", "checkView"));
-            cbCheck = (SuperCheckBox) itemView.findViewById(fakeR.getId(this, "id", "cb_check"));
+            ivThumb = (ImageView) itemView.findViewById(fakeR.getId("id", "iv_thumb"));
+            mask = itemView.findViewById(fakeR.getId("id", "mask"));
+            checkView=itemView.findViewById(fakeR.getId("id", "checkView"));
+            cbCheck = (SuperCheckBox) itemView.findViewById(fakeR.getId("id", "cb_check"));
             itemView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, mImageSize)); //让图片是个正方形
         }
 
         void bind(final int position){
+            fakeR = new FakeR(mActivity);
             final ImageItem imageItem = getItem(position);
             ivThumb.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -155,7 +158,7 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                     cbCheck.setChecked(!cbCheck.isChecked());
                     int selectLimit = imagePicker.getSelectLimit();
                     if (cbCheck.isChecked() && mSelectedImages.size() >= selectLimit) {
-                        Toast.makeText(mActivity.getApplicationContext(), mActivity.getString(fakeR.getId(this, "string", "ip_select_limit"), selectLimit), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mActivity.getApplicationContext(), mActivity.getString(fakeR.getId("string", "ip_select_limit"), selectLimit), Toast.LENGTH_SHORT).show();
                         cbCheck.setChecked(false);
                         mask.setVisibility(View.GONE);
                     } else {

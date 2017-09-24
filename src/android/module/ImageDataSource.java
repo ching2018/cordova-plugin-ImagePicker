@@ -80,6 +80,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         imageFolders.clear();
+        fakeR = new FakeR(activity);
         if (data != null) {
             ArrayList<ImageItem> allImages = new ArrayList<ImageItem>();   //所有图片的集合,不分文件夹
             while (data.moveToNext()) {
@@ -128,7 +129,7 @@ public class ImageDataSource implements LoaderManager.LoaderCallbacks<Cursor> {
             if (data.getCount() > 0 && allImages.size()>0) {
                 //构造所有图片的集合
                 ImageFolder allImagesFolder = new ImageFolder();
-                allImagesFolder.name = activity.getResources().getString(fakeR.getId(this, "string", "ip_all_images"));
+                allImagesFolder.name = activity.getResources().getString(fakeR.getId("string", "ip_all_images"));
                 allImagesFolder.path = "/";
                 allImagesFolder.cover = allImages.get(0);
                 allImagesFolder.images = allImages;

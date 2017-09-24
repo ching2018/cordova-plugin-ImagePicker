@@ -71,8 +71,9 @@ public class ImageFolderAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
+        fakeR = new FakeR(mActivity);
         if (convertView == null) {
-            convertView = mInflater.inflate(fakeR.getId(this, "layout", "adapter_folder_list_item"), parent, false);
+            convertView = mInflater.inflate(fakeR.getId("layout", "adapter_folder_list_item"), parent, false);
             holder = new ViewHolder(convertView);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -80,7 +81,7 @@ public class ImageFolderAdapter extends BaseAdapter {
 
         ImageFolder folder = getItem(position);
         holder.folderName.setText(folder.name);
-        holder.imageCount.setText(mActivity.getString(fakeR.getId(this, "string", "ip_folder_image_count"), folder.images.size()));
+        holder.imageCount.setText(mActivity.getString(fakeR.getId("string", "ip_folder_image_count"), folder.images.size()));
         imagePicker.getImageLoader().displayImage(mActivity, folder.cover.path, holder.cover, mImageSize, mImageSize);
 
         if (lastSelected == position) {
@@ -111,10 +112,11 @@ public class ImageFolderAdapter extends BaseAdapter {
         ImageView folderCheck;
 
         public ViewHolder(View view) {
-            cover = (ImageView) view.findViewById(fakeR.getId(this, "id", "iv_cover"));
-            folderName = (TextView) view.findViewById(fakeR.getId(this, "id", "tv_folder_name"));
-            imageCount = (TextView) view.findViewById(fakeR.getId(this, "id", "tv_image_count"));
-            folderCheck = (ImageView) view.findViewById(fakeR.getId(this, "id", "iv_folder_check"));
+            fakeR = new FakeR(mActivity);
+            cover = (ImageView) view.findViewById(fakeR.getId("id", "iv_cover"));
+            folderName = (TextView) view.findViewById(fakeR.getId("id", "tv_folder_name"));
+            imageCount = (TextView) view.findViewById(fakeR.getId("id", "tv_image_count"));
+            folderCheck = (ImageView) view.findViewById(fakeR.getId("id", "iv_folder_check"));
             view.setTag(this);
         }
     }

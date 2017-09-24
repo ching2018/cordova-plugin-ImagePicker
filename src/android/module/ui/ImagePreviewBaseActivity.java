@@ -42,7 +42,8 @@ public abstract class ImagePreviewBaseActivity extends ImageBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(fakeR.getId(this, "layout", "activity_image_preview"));
+        fakeR = new FakeR(this);
+        setContentView(fakeR.getId("layout", "activity_image_preview"));
 
         mCurrentPosition = getIntent().getIntExtra(ImagePicker.EXTRA_SELECTED_IMAGE_POSITION, 0);
         isFromItems = getIntent().getBooleanExtra(ImagePicker.EXTRA_FROM_ITEMS, false);
@@ -59,26 +60,26 @@ public abstract class ImagePreviewBaseActivity extends ImageBaseActivity {
         selectedImages = imagePicker.getSelectedImages();
 
         //初始化控件
-        content = findViewById(fakeR.getId(this, "id", "content"));
+        content = findViewById(fakeR.getId("id", "content"));
 
         //因为状态栏透明后，布局整体会上移，所以给头部加上状态栏的margin值，保证头部不会被覆盖
-        topBar = findViewById(fakeR.getId(this, "id", "top_bar"));
+        topBar = findViewById(fakeR.getId("id", "top_bar"));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) topBar.getLayoutParams();
             params.topMargin = Utils.getStatusHeight(this);
             topBar.setLayoutParams(params);
         }
-        topBar.findViewById(fakeR.getId(this, "id", "btn_ok")).setVisibility(View.GONE);
-        topBar.findViewById(fakeR.getId(this, "id", "btn_back")).setOnClickListener(new View.OnClickListener() {
+        topBar.findViewById(fakeR.getId("id", "btn_ok")).setVisibility(View.GONE);
+        topBar.findViewById(fakeR.getId("id", "btn_back")).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
 
-        mTitleCount = (TextView) findViewById(fakeR.getId(this, "id", "tv_des"));
+        mTitleCount = (TextView) findViewById(fakeR.getId("id", "tv_des"));
 
-        mViewPager = (ViewPagerFixed) findViewById(fakeR.getId(this, "id", "viewpager"));
+        mViewPager = (ViewPagerFixed) findViewById(fakeR.getId("id", "viewpager"));
         mAdapter = new ImagePageAdapter(this, mImageItems);
         mAdapter.setPhotoViewClickListener(new ImagePageAdapter.PhotoViewClickListener() {
             @Override
@@ -90,7 +91,7 @@ public abstract class ImagePreviewBaseActivity extends ImageBaseActivity {
         mViewPager.setCurrentItem(mCurrentPosition, false);
 
         //初始化当前页面的状态
-        mTitleCount.setText(getString(fakeR.getId(this, "string", "ip_preview_image_count"), mCurrentPosition + 1, mImageItems.size()));
+        mTitleCount.setText(getString(fakeR.getId("string", "ip_preview_image_count"), mCurrentPosition + 1, mImageItems.size()));
     }
 
     /** 单击时，隐藏头和尾 */

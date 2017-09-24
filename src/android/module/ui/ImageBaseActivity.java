@@ -32,12 +32,13 @@ public class ImageBaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        fakeR = new FakeR(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(true);
         }
         tintManager = new SystemBarTintManager(this);
         tintManager.setStatusBarTintEnabled(true);
-        tintManager.setStatusBarTintResource(fakeR.getId(this, "color", "ip_color_primary_dark"));  //设置上方状态栏的颜色
+        tintManager.setStatusBarTintResource(fakeR.getId("color", "ip_color_primary_dark"));  //设置上方状态栏的颜色
     }
 
     @TargetApi(19)

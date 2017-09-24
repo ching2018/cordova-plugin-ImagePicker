@@ -37,13 +37,13 @@ public class FolderPopUpWindow extends PopupWindow implements View.OnClickListen
 
     public FolderPopUpWindow(Context context, BaseAdapter adapter) {
         super(context);
-
-        final View view = View.inflate(context, fakeR.getId(this, "layout", "pop_folder"), null);
-        masker = view.findViewById(fakeR.getId(this, "id", "masker"));
+        fakeR = new FakeR(context);
+        final View view = View.inflate(context, fakeR.getId("layout", "pop_folder"), null);
+        masker = view.findViewById(fakeR.getId("id", "masker"));
         masker.setOnClickListener(this);
-        marginView = view.findViewById(fakeR.getId(this, "id", "margin"));
+        marginView = view.findViewById(fakeR.getId("id", "margin"));
         marginView.setOnClickListener(this);
-        listView = (ListView) view.findViewById(fakeR.getId(this, "id", "listView"));
+        listView = (ListView) view.findViewById(fakeR.getId("id", "listView"));
         listView.setAdapter(adapter);
 
         setContentView(view);
