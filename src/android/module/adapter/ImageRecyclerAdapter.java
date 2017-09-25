@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.holdskill.imagepicker.ImagePicker;
-import com.holdskill.imagepicker.FakeR;
+import com.holdskill.youji.R;
 import com.holdskill.imagepicker.bean.ImageItem;
 import com.holdskill.imagepicker.ui.ImageBaseActivity;
 import com.holdskill.imagepicker.ui.ImageGridActivity;
@@ -49,7 +49,6 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
     private int mImageSize;               //每个条目的大小
     private LayoutInflater mInflater;
     private OnImageItemClickListener listener;   //图片被点击的监听
-    private FakeR fakeR;
 
     public void setOnImageItemClickListener(OnImageItemClickListener listener) {
         this.listener = listener;
@@ -82,11 +81,10 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        fakeR = new FakeR(mActivity);
         if (viewType == ITEM_TYPE_CAMERA){
-            return new CameraViewHolder(mInflater.inflate(fakeR.getId("layout", "adapter_camera_item"),parent,false));
+            return new CameraViewHolder(mInflater.inflate(R.layout.adapter_camera_item,parent,false));
         }
-        return new ImageViewHolder(mInflater.inflate(fakeR.getId("layout", "adapter_image_list_item"),parent,false));
+        return new ImageViewHolder(mInflater.inflate(R.layout.adapter_image_list_item,parent,false));
     }
 
     @Override
@@ -134,17 +132,15 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         ImageViewHolder(View itemView) {
             super(itemView);
-            fakeR = new FakeR(mActivity);
             rootView = itemView;
-            ivThumb = (ImageView) itemView.findViewById(fakeR.getId("id", "iv_thumb"));
-            mask = itemView.findViewById(fakeR.getId("id", "mask"));
-            checkView=itemView.findViewById(fakeR.getId("id", "checkView"));
-            cbCheck = (SuperCheckBox) itemView.findViewById(fakeR.getId("id", "cb_check"));
+            ivThumb = (ImageView) itemView.findViewById(R.id.iv_thumb);
+            mask = itemView.findViewById(R.id.mask);
+            checkView=itemView.findViewById(R.id.checkView);
+            cbCheck = (SuperCheckBox) itemView.findViewById(R.id.cb_check);
             itemView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, mImageSize)); //让图片是个正方形
         }
 
         void bind(final int position){
-            fakeR = new FakeR(mActivity);
             final ImageItem imageItem = getItem(position);
             ivThumb.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -158,7 +154,7 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                     cbCheck.setChecked(!cbCheck.isChecked());
                     int selectLimit = imagePicker.getSelectLimit();
                     if (cbCheck.isChecked() && mSelectedImages.size() >= selectLimit) {
-                        Toast.makeText(mActivity.getApplicationContext(), mActivity.getString(fakeR.getId("string", "ip_select_limit"), selectLimit), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mActivity.getApplicationContext(), mActivity.getString(R.string.ip_select_limit, selectLimit), Toast.LENGTH_SHORT).show();
                         cbCheck.setChecked(false);
                         mask.setVisibility(View.GONE);
                     } else {
