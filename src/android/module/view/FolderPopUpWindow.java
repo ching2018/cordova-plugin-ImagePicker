@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
-import com.holdskill.youji.R;
+import your.package.name.R;
 
 /**
  * ================================================

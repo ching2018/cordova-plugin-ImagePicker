@@ -13,7 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.holdskill.imagepicker.ImagePicker;
-import com.holdskill.youji.R;
+import your.package.name.R;
 import com.holdskill.imagepicker.bean.ImageItem;
 import com.holdskill.imagepicker.util.NavigationBarChangeListener;
 import com.holdskill.imagepicker.util.Utils;
