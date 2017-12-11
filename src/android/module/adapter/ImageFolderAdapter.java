@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.holdskill.imagepicker.ImagePicker;
-import your.package.name.R;
+import com.your.package.name.R;
 import com.holdskill.imagepicker.util.Utils;
 import com.holdskill.imagepicker.bean.ImageFolder;
 

@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.holdskill.imagepicker.ImagePicker;
-import your.package.name.R;
+import com.your.package.name.R;
 import com.holdskill.imagepicker.view.SystemBarTintManager;
 
 /**

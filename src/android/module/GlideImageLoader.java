@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.holdskill.imagepicker.loader.ImageLoader;
-import your.package.name.R;
+import com.your.package.name.R;
 
 import java.io.File;
 

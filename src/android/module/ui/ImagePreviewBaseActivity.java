@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.holdskill.imagepicker.DataHolder;
 import com.holdskill.imagepicker.ImagePicker;
-import your.package.name.R;
+import com.your.package.name.R;
 import com.holdskill.imagepicker.adapter.ImagePageAdapter;
 import com.holdskill.imagepicker.bean.ImageItem;
 import com.holdskill.imagepicker.util.Utils;
