@@ -36,6 +36,7 @@ var filestoreplace = [
     "platforms/android/src/com/holdskill/imagepicker/ui/ImagePreviewDelActivity.java",
     "platforms/android/src/com/holdskill/imagepicker/view/CropImageView.java",
     "platforms/android/src/com/holdskill/imagepicker/view/FolderPopUpWindow.java",
+    "platforms/android/src/com/holdskill/imagepicker/ImageDataSource.java",
 
 ];
 filestoreplace.forEach(function(val, index, array) {
@@ -46,6 +47,7 @@ filestoreplace.forEach(function(val, index, array) {
         console.log("With the package name: " + packageName);
         console.log("change com.your.package.name for " + packageName);
         replace_string_in_file(val, /com.your.package.name/g, packageName);
+        replace_string_in_file(val, /com.holdskill.youji.R/g, packageName + '.R');
 
     } else {
         console.log("No android platform found! :(");
