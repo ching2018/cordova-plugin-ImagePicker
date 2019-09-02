@@ -146,7 +146,7 @@
                 //                    NSURL *URL = [info valueForKey:@"PHImageFileURLKey"];
                 //                    if(URL != NULL){
                 
-                NSString *sanboxPath =  [self saveAndGetImageDocuments:result withName:fileName];
+                NSString *sanboxPath =  [self saveAndGetImage:result withName:fileName subPath:@"tmp"];
                 
                 
                 
@@ -176,22 +176,24 @@
 
 
 //保存获取图片
-- (NSString *)saveAndGetImageDocuments:(UIImage *)currentImage withName:(NSString*)imageName{
+- (NSString *)saveAndGetImage:(UIImage *)currentImage withName:(NSString*)imageName pathComponent:(NSString *)subPath{
     
     NSData *imageData = UIImageJPEGRepresentation(currentImage, 0.8);
     
     // 获取沙盒目录
-    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
+    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:subPath] stringByAppendingPathComponent:imageName];
     
     // 将图片写入文件
     [imageData writeToFile:fullPath atomically:NO];
     
-    NSString *sandoxPath=[NSString stringWithFormat:@"%@/Documents/%@",NSHomeDirectory(),imageName];
+    NSString *sandoxPath=[NSString stringWithFormat:@"%@/%@/%@", NSHomeDirectory(), subPath, imageName];
     
     return sandoxPath;
     
 }
-
+- (NSString *)saveAndGetImageDocuments:(UIImage *)currentImage withName:(NSString*)imageName {
+  return [self saveAndGetImage:currentImage withName:imageName pathComponent:@"Docuemnts"];
+}
 
 - (UIImage*)imageByScalingNotCroppingForSize:(UIImage*)anImage toSize:(CGSize)frameSize
 {
